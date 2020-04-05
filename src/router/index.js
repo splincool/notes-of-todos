@@ -3,8 +3,6 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-// component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-
 const routes = [
   {
     path: '/',
@@ -12,16 +10,15 @@ const routes = [
     component: () => import('../views/HomeView.vue')
   },
   {
-    path: '/:noteId',
+    path: 'note/:noteId',
     name: 'NoteView',
-    component: () => import('../views/NoteView.vue')
+    component: () => import('../views/NoteView.vue'),
   },
   {
-    path: '/new',
-    name: 'NoteView',
-    component: () => import('../views/NoteView.vue')
+    path: '*',
+    name: 'NotFound',
+    component: () => import('../views/NotFound.vue')
   }
-  // 404 
 ]
 
 const router = new VueRouter({

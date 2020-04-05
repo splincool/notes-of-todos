@@ -1,9 +1,26 @@
 export default {
-  togglePopup(state, isPopup) {
-    state.isPopup = isPopup
+  showPopup(state, {message, action}) {
+    state.popupState.isShow = true
+    state.popupState.message = message
+    state.popupState.action = action
   },
-  deleteNote(state, noteId) {
-    state.notes.splice(state.notes.indexOf(noteId), 1)
+  hidePopup(state) {
+    state.popupState.isShow = false
+  },
+  saveNewNote(state, note) {
+    state.notes.push(note)
+  },
+  saveNotes(state, notes) {
+    state.notes = notes
+  },
+  updateNote(state, {noteIndex, note}) {
+    state.notes[noteIndex] = note
+  },
+  deleteNote(state, noteIndex) {
+    state.notes.splice(noteIndex, 1)
+  },
+  cancelEditNote(state, isCancelEdit) {
+    state.isCancelEdit = isCancelEdit
   },
   saveNoteUnderRemove(state, noteId) {
     state.noteUnderRemove = noteId

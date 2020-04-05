@@ -1,12 +1,12 @@
 <template>
   <div class="note-item">
     <div class="note-item__body">
-      <h2>{{item.title}}</h2>
-      <div v-for="todo in todos" :key="todo.todoId">
+      <h2>{{note.title}}</h2>
+      <div v-for="todo in todos" :key="todo.todoId" class="todos-preview__wrapper">
         <input type="checkbox" :checked="todo.isChecked" disabled="disabled"/>
         <span
-          class="todo-text"
-          :style="{textDecoration: todo.isChecked? 'line-through' : 'none'}">
+          class="todos-preview__todo-text"
+          :style="{textDecoration: todo.isChecked ? 'line-through' : 'none'}">
           {{todo.text}}
         </span>
       </div>
@@ -22,19 +22,19 @@
 export default {
   name: 'NoteItem',
   props: {
-    item: Object
+    note: Object
   },
   computed: {
     todos() {
-      return this.item.todos.slice(0, 3)
+      return this.note.todos.slice(0, 3)
     }
   },
   methods: {
     onEdit() {
-      this.$router.push({name: 'NoteView', params: {noteId: this.item.noteId}})
+      this.$router.push({name: 'NoteView', params: {noteId: this.note.noteId}})
     },
     onDelete() {
-      this.$store.dispatch('popupDeleteAction', this.item)
+      this.$store.dispatch('popupDeleteAction', this.note.noteId)
     }
   }
 }
@@ -43,7 +43,7 @@ export default {
 <style lang="scss" scoped>
   .note-item {
     background: #fff;
-    box-shadow: 3px 3px 9px 0 rgba(221,221,221,0.50);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
     border-radius: 5px;
     padding: 10px 10px 10px 20px;
     margin: 10px 10px 0 0;
@@ -52,10 +52,10 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    .todo-text {
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
+  }
+  .todos-preview__todo-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .note-item__edit-panel {
     display: flex;
@@ -70,10 +70,10 @@ export default {
       color: #494949;
     }
   }
-  @media only screen and (max-width: 768px) {
+  @media screen and (max-width: 1023px) {
     .note-item {
-      width: 100%;
-      margin-right: 0px;
+      width: 90%;
+      margin: 10px 0 0 0;
     }
   }
 </style>

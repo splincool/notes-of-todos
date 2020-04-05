@@ -1,9 +1,9 @@
 <template>
   <div class="note-list">
     <NoteItem
-      v-for="item in $store.state.notes" 
-      :key="item.noteId"
-      :item="item"
+      v-for="note in notes" 
+      :key="note.noteId"
+      :note="note"
     />
   </div>
 </template>
@@ -13,6 +13,11 @@ import NoteItem from '@/components/NoteItem.vue'
 
 export default {
   name: 'NoteList',
+  computed: {
+    notes() {
+      return this.$store.state.notes
+    }
+  },
   components: {
     NoteItem
   }
@@ -24,5 +29,11 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+  }
+  @media screen and (max-width: 1023px) {
+    .note-list {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 </style>

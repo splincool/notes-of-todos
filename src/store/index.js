@@ -8,95 +8,42 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isPopup: false,
+    popupState: {
+      action: '',
+      isShow: false,
+      message: ''
+    },
+    isCancelEdit: null,
     noteUnderRemove: null,
     notes: [
       {
         noteId: 1,
-        title: 'Title 1',
+        title: 'Список продуктов',
         todos: [
           {
             todoId: 1,
-            text: 'купить молоко',
+            text: 'Купить молоко',
             isChecked: false
           },
           {
             todoId: 2,
-            text: 'купить хлеб',
+            text: 'Купить хлеб',
             isChecked: false
           }
         ]
       },
       {
         noteId: 2,
-        title: 'Title 2',
+        title: 'Список дел',
         todos: [
           {
             todoId: 1,
-            text: 'сделать приложение',
+            text: 'Сделать приложение',
             isChecked: false
           },
           {
             todoId: 2,
-            text: 'сдать отчет',
-            isChecked: true
-          }
-        ]
-      },
-      {
-        noteId: 3,
-        title: 'Title 3',
-        todos: [
-          {
-            todoId: 1,
-            text: 'сделать приложение',
-            isChecked: false
-          },
-          {
-            todoId: 2,
-            text: 'сдать отчет',
-            isChecked: true
-          }
-        ]
-      },
-      {
-        noteId: 4,
-        title: 'Title 4',
-        todos: [
-          {
-            todoId: 1,
-            text: 'сделать приложение',
-            isChecked: false
-          },
-          {
-            todoId: 2,
-            text: 'сдать отчет',
-            isChecked: true
-          }
-        ]
-      },
-      {
-        noteId: 5,
-        title: 'Title 5',
-        todos: [
-          {
-            todoId: 1,
-            text: 'сделать приложение',
-            isChecked: false
-          },
-          {
-            todoId: 2,
-            text: 'сдать отчет',
-            isChecked: true
-          },
-          {
-            todoId: 3,
-            text: 'сдать отчет 2',
-            isChecked: true
-          },
-          {
-            todoId: 4,
-            text: 'сдать отчет qqq2',
+            text: 'Сдать отчет',
             isChecked: true
           }
         ]

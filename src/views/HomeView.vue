@@ -1,9 +1,8 @@
 <template>
   <div class="home-view">
     <header class="home-view__header">
-      <router-link to="/new" class="new-note-btn">
-        <i class="mdi mdi-bookmark-plus-outline" />
-        Новая заметка
+      <router-link :to="{name: 'NoteView', params: {noteId: 'new'}}" class="header__note-btn btn primary-btn">
+        Создать заметку
       </router-link>
     </header>
     <NoteList/>
@@ -26,20 +25,8 @@ export default {
     display: flex;
     justify-content: flex-end;
     margin: 20px 5px;
-    .new-note-btn {
-      display: flex;
-      align-items: center;
-      font-size: 20px;
-      text-decoration: none;
-      color: #616161;
-      &:hover {
-        color: #373737;
-      }
-    }
   }
-  @media only screen and (max-width: 768px) {
-    .home-view {
-      width: 100%;
-    }
+  .header__note-btn {
+    text-decoration: none;
   }
 </style>
