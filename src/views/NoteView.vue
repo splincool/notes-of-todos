@@ -258,7 +258,7 @@ export default {
   }
   .todos-block__todo-raw {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     margin-bottom: 5px;
   }
   .todos-block__remove-btn {
@@ -272,7 +272,6 @@ export default {
     -webkit-transform: scale(1.3); /* Safari and Chrome */
     -o-transform: scale(1.3); /* Opera */
     transform: scale(1.3);
-    padding: 10px;
     margin-right: 8px;
   }
   .todos-block__todo-text {

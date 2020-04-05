@@ -3,7 +3,12 @@
     <div class="note-item__body">
       <h2>{{note.title}}</h2>
       <div v-for="todo in todos" :key="todo.todoId" class="todos-preview__wrapper">
-        <input type="checkbox" :checked="todo.isChecked" disabled="disabled"/>
+        <input 
+          type="checkbox" 
+          :checked="todo.isChecked" 
+          disabled="disabled"
+          class="todos-preview__todo-checkbox"
+        />
         <span
           class="todos-preview__todo-text"
           :style="{textDecoration: todo.isChecked ? 'line-through' : 'none'}">
@@ -52,6 +57,15 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+  .todos-preview__wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .todos-preview__todo-checkbox {
+    -webkit-transform: translate(0px);
+    transform: translate(0px);
+    margin-right: 6px;
   }
   .todos-preview__todo-text {
     text-overflow: ellipsis;
