@@ -61,9 +61,9 @@ html {
   }
 }
 .btn-disabled {
-  cursor: not-allowed;
+  cursor: not-allowed !important;
   background: #4299e1;
-  opacity: .5!important;
+  opacity: .5;
 }
 
 @media screen and (max-width: 1199px) {

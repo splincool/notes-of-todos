@@ -31,7 +31,10 @@
             @keypress.enter="onAddTodo"
             class="todo-input__input" 
           />
-          <div class="todo-input__btn" @click="onAddTodo">Добавить</div>
+          <div
+            @click="onAddTodo" 
+            class="todo-input__btn" 
+            :class="isEmptyInputValue ? 'btn-disabled' : ''" >Добавить</div>
         </div>
 
         <div class="todos-block__wrapper">
@@ -55,7 +58,7 @@
       <div class="bottom-edit-panel">
         <div class="bottom-edit-panel__wrapper">
           <div @click="onDeleteNote()" class="bottom-edit-panel__btn btn delete-btn">Удалить</div>
-          <div @click="onCancelEdit()" class="bottom-edit-panel__btn btn primary-btn">Отменить</div>
+          <div v-if="isCancelBtn" @click="onCancelEdit()" class="bottom-edit-panel__btn btn primary-btn">Отменить</div>
         </div>
         <div @click="onSaveNote()" :class="isSaveBtn ? 'primary-btn' : 'btn-disabled'" class="bottom-edit-panel__btn btn">Сохранить</div>
       </div>
@@ -78,13 +81,17 @@ export default {
       prevPrevState: null,
       prevState: null,
       isUndo: false,
-      isRedo: false
+      isRedo: false,
+      isCancelBtn: false,
+      isEmptyInputValue: true
     }
   },
   created() {
     let noteId = this.$route.params.noteId
+    this.isCancelBtn = false
     if(!isNaN(noteId)) {
       this.getNoteData(noteId)
+      this.isCancelBtn = true
     }
   },
   watch: {
@@ -92,6 +99,13 @@ export default {
       if(_val) {
         this.getNoteData(this.note.noteId)
       } 
+    },
+    todoValue(_val) {
+      if (_val) {
+        this.isEmptyInputValue = false
+      } else {
+        this.isEmptyInputValue = true
+      }
     }
   },
   computed: {
@@ -214,7 +228,7 @@ export default {
     display: flex;
     .disabled {
       cursor: not-allowed;
-      opacity: .5!important;
+      opacity: .5;
       &:hover {
         color: #4299e1;
       }
@@ -284,10 +298,12 @@ export default {
     -o-transform: scale(1.3); /* Opera */
     transform: scale(1.3);
     margin-right: 8px;
+    min-width: 16px;
   }
   .todos-block__todo-text {
     font-size: 20px;
     border: none;
+    overflow: hidden;
     &:focus {
       outline-width: 0;
     }
