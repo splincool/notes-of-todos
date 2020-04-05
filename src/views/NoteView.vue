@@ -40,8 +40,9 @@
             class="todos-block__todo-raw">
               <span @click="onRemoveTodo(todo.todoId)" class="todos-block__remove-btn">&#10005;</span>
               <input type="checkbox" :checked="todo.isChecked" @change="onTodoCheckbox(todo.todoId)" class="todos-block__todo-checkbox"/>
-              <span 
-                contenteditable="true" 
+              <span
+                @blur="onTodoText($event, todo.todoId)" 
+                contenteditable
                 class="todos-block__todo-text"
                 :style="{textDecoration: todo.isChecked ? 'line-through' : 'none'}"
               >
@@ -127,6 +128,16 @@ export default {
       for (let todo of todos) {
         if(todo.todoId === todoId) {
           todo.isChecked = !todo.isChecked
+        }
+      }
+      this.note.todos = [...todos]
+      this.onSaveMoves()
+    },
+    onTodoText(event, todoId) {
+      let {todos} = this.note
+      for (let todo of todos) {
+        if(todo.todoId === todoId) {
+          todo.text = event.target.innerText
         }
       }
       this.note.todos = [...todos]

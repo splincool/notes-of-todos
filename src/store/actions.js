@@ -11,6 +11,7 @@ export default {
     let noteIndex = state.notes.findIndex(item => item.noteId === note.noteId)
     if(noteIndex > -1) {
       commit('updateNote', {noteIndex, note})
+      dispatch('saveToLS')
     } else {
       commit('saveNewNote', note)
       dispatch('saveToLS')
