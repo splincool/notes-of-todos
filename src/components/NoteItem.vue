@@ -58,23 +58,28 @@ export default {
     flex-direction: column;
     justify-content: space-between;
   }
+
   .todos-preview__wrapper {
     display: flex;
     align-items: center;
   }
+
   .todos-preview__todo-checkbox {
     -webkit-transform: translate(0px);
     transform: translate(0px);
     margin-right: 6px;
   }
+
   .todos-preview__todo-text {
     text-overflow: ellipsis;
     overflow: hidden;
   }
+
   .note-item__edit-panel {
     display: flex;
     justify-content: flex-end;
   }
+
   .edit-panel__btn {
     cursor: pointer;
     font-size: 25px;
@@ -84,6 +89,7 @@ export default {
       color: #494949;
     }
   }
+  
   @media screen and (max-width: 1023px) {
     .note-item {
       width: 90%;
