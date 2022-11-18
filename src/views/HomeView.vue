@@ -26,6 +26,7 @@ export default {
     justify-content: flex-end;
     margin: 20px 5px;
   }
+  
   .header__note-btn {
     text-decoration: none;
   }
